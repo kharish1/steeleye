@@ -1,0 +1,15 @@
+2021-03-18 14:53:20,746 Invalid URL 'www.google.com': No schema supplied. Perhaps you meant http://www.google.com?
+2021-03-18 14:53:20,749 Starting new HTTPS connection (1): registers.esma.europa.eu:443
+2021-03-18 14:53:21,914 https://registers.esma.europa.eu:443 "GET /solr/esma_registers_firds_files/select?q=*&fq=publication_date:%5B2021-01-17T00:00:00Z+TO+2021-01-19T23:59:59Z%5D&wt=xml&indent=true&start=0&rows=100 HTTP/1.1" 200 None
+2021-03-18 14:53:21,924 Unable to locate the ZIP file URL for given child=1000 and filetype=DLTINS
+2021-03-18 14:53:21,927 Starting new HTTPS connection (1): registers.esma.europa.eu:443
+2021-03-18 14:53:22,733 https://registers.esma.europa.eu:443 "GET /solr/esma_registers_firds_files/select?q=*&fq=publication_date:%5B2021-01-17T00:00:00Z+TO+2021-01-19T23:59:59Z%5D&wt=xml&indent=true&start=0&rows=100 HTTP/1.1" 200 None
+2021-03-18 14:53:22,737 Located the ZIP file URL successfully
+2021-03-18 14:53:22,737 File not yet downloaded, going ahead
+2021-03-18 14:53:22,740 Starting new HTTP connection (1): firds.esma.europa.eu:80
+2021-03-18 14:53:22,950 http://firds.esma.europa.eu:80 "GET /firds/DLTINS_20210117_01of01.zip HTTP/1.1" 200 4434514
+2021-03-18 14:53:24,866 Downloaded the ZIP file from the URL successfully
+2021-03-18 14:53:24,867 XML file does not exists, unzipping now
+2021-03-18 14:53:25,833 Extracted ZIP file successfully
+2021-03-18 14:53:25,833 CSV file already exists, skipping the function
+2021-03-18 14:53:25,863 Successfully deleted all files

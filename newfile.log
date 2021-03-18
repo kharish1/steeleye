@@ -1,0 +1,12 @@
+2021-03-18 13:30:39,721 Starting new HTTPS connection (1): registers.esma.europa.eu:443
+2021-03-18 13:30:40,975 https://registers.esma.europa.eu:443 "GET /solr/esma_registers_firds_files/select?q=*&fq=publication_date:%5B2021-01-17T00:00:00Z+TO+2021-01-19T23:59:59Z%5D&wt=xml&indent=true&start=0&rows=100 HTTP/1.1" 200 None
+2021-03-18 13:30:40,981 Located the ZIP file URL successfully
+2021-03-18 13:30:40,982 File not yet downloaded, going ahead
+2021-03-18 13:30:40,986 Starting new HTTP connection (1): firds.esma.europa.eu:80
+2021-03-18 13:30:41,008 http://firds.esma.europa.eu:80 "GET /firds/DLTINS_20210117_01of01.zip HTTP/1.1" 200 4434514
+2021-03-18 13:30:42,289 Downloaded the ZIP file from the URL successfully
+2021-03-18 13:30:42,291 XML file does not exists, unzipping now
+2021-03-18 13:30:43,192 Extracted ZIP file successfully
+2021-03-18 13:30:43,193 CSV file does not exist, going ahead with creating it
+2021-03-18 13:30:43,217 Converted XML file to CSV successfully
+2021-03-18 13:30:43,459 Successfully deleted all files
