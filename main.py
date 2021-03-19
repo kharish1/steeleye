@@ -6,7 +6,8 @@ xobj = XML_processor.XML_Processor('https://registers.esma.europa.eu/solr/esma_r
 xobj.getZipURL()
 xobj.downloadZipFile()
 xobj.unzipFile()
+xobj.splitXML('FinInstrmGnlAttrbts',10000) #creating smaller xml files
 xobj.XMLtoCSV('FinInstrmGnlAttrbts', ['Id', 'FullNm', 'ClssfctnTp',
-              'NtnlCcy', 'CmmdtyDerivInd'], ['Issr'],100)
+              'NtnlCcy', 'CmmdtyDerivInd'], ['Issr'],-2) #-2 means all the contents
 xobj.cleanUp()
 #xobj.upload_to_aws('s3','dummy.csv')
