@@ -1,12 +1,40 @@
-2021-03-18 13:30:39,721 Starting new HTTPS connection (1): registers.esma.europa.eu:443
-2021-03-18 13:30:40,975 https://registers.esma.europa.eu:443 "GET /solr/esma_registers_firds_files/select?q=*&fq=publication_date:%5B2021-01-17T00:00:00Z+TO+2021-01-19T23:59:59Z%5D&wt=xml&indent=true&start=0&rows=100 HTTP/1.1" 200 None
-2021-03-18 13:30:40,981 Located the ZIP file URL successfully
-2021-03-18 13:30:40,982 File not yet downloaded, going ahead
-2021-03-18 13:30:40,986 Starting new HTTP connection (1): firds.esma.europa.eu:80
-2021-03-18 13:30:41,008 http://firds.esma.europa.eu:80 "GET /firds/DLTINS_20210117_01of01.zip HTTP/1.1" 200 4434514
-2021-03-18 13:30:42,289 Downloaded the ZIP file from the URL successfully
-2021-03-18 13:30:42,291 XML file does not exists, unzipping now
-2021-03-18 13:30:43,192 Extracted ZIP file successfully
-2021-03-18 13:30:43,193 CSV file does not exist, going ahead with creating it
-2021-03-18 13:30:43,217 Converted XML file to CSV successfully
-2021-03-18 13:30:43,459 Successfully deleted all files
+2021-03-19 11:47:28,326 Starting new HTTPS connection (1): registers.esma.europa.eu:443
+2021-03-19 11:47:29,689 https://registers.esma.europa.eu:443 "GET /solr/esma_registers_firds_files/select?q=*&fq=publication_date:%5B2021-01-17T00:00:00Z+TO+2021-01-19T23:59:59Z%5D&wt=xml&indent=true&start=0&rows=100 HTTP/1.1" 200 None
+2021-03-19 11:47:29,695 Located the ZIP file URL successfully
+2021-03-19 11:47:29,696 File not yet downloaded, going ahead
+2021-03-19 11:47:29,701 Starting new HTTP connection (1): firds.esma.europa.eu:80
+2021-03-19 11:47:29,714 http://firds.esma.europa.eu:80 "GET /firds/DLTINS_20210117_01of01.zip HTTP/1.1" 200 4434514
+2021-03-19 11:47:31,643 Downloaded the ZIP file from the URL successfully
+2021-03-19 11:47:31,645 XML file does not exists, unzipping now
+2021-03-19 11:47:32,482 Extracted ZIP file successfully
+2021-03-19 11:48:45,620 Finished splitting
+2021-03-19 11:48:45,621 CSV file does not exist, going ahead with creating it
+2021-03-19 11:49:26,125 Converted DLTINS_20210117_01of018.xml XML file to CSV successfully
+2021-03-19 11:49:26,277 CSV file does not exist, going ahead with creating it
+2021-03-19 11:50:07,366 Converted DLTINS_20210117_01of016.xml XML file to CSV successfully
+2021-03-19 11:50:07,396 CSV file does not exist, going ahead with creating it
+2021-03-19 11:50:34,378 Converted DLTINS_20210117_01of013.xml XML file to CSV successfully
+2021-03-19 11:50:34,390 CSV file does not exist, going ahead with creating it
+2021-03-19 11:51:17,556 Converted DLTINS_20210117_01of0110.xml XML file to CSV successfully
+2021-03-19 11:51:18,021 CSV file does not exist, going ahead with creating it
+2021-03-19 11:51:51,197 Converted DLTINS_20210117_01of014.xml XML file to CSV successfully
+2021-03-19 11:51:51,227 CSV file does not exist, going ahead with creating it
+2021-03-19 11:52:28,458 Converted DLTINS_20210117_01of0114.xml XML file to CSV successfully
+2021-03-19 11:52:28,790 CSV file does not exist, going ahead with creating it
+2021-03-19 11:53:02,533 Converted DLTINS_20210117_01of0113.xml XML file to CSV successfully
+2021-03-19 11:53:02,585 CSV file does not exist, going ahead with creating it
+2021-03-19 11:53:27,995 Converted DLTINS_20210117_01of0112.xml XML file to CSV successfully
+2021-03-19 11:53:28,011 CSV file does not exist, going ahead with creating it
+2021-03-19 11:53:53,442 Converted DLTINS_20210117_01of019.xml XML file to CSV successfully
+2021-03-19 11:53:53,449 CSV file does not exist, going ahead with creating it
+2021-03-19 11:54:17,630 Converted DLTINS_20210117_01of017.xml XML file to CSV successfully
+2021-03-19 11:54:17,665 CSV file does not exist, going ahead with creating it
+2021-03-19 11:54:40,962 Converted DLTINS_20210117_01of0111.xml XML file to CSV successfully
+2021-03-19 11:54:40,984 CSV file does not exist, going ahead with creating it
+2021-03-19 11:55:04,945 Converted DLTINS_20210117_01of012.xml XML file to CSV successfully
+2021-03-19 11:55:04,962 CSV file does not exist, going ahead with creating it
+2021-03-19 11:55:29,171 Converted DLTINS_20210117_01of0115.xml XML file to CSV successfully
+2021-03-19 11:55:29,188 CSV file does not exist, going ahead with creating it
+2021-03-19 11:55:54,254 Converted DLTINS_20210117_01of011.xml XML file to CSV successfully
+2021-03-19 11:55:54,270 CSV file does not exist, going ahead with creating it
+2021-03-19 11:56:19,011 Converted DLTINS_20210117_01of015.xml XML file to CSV successfully
