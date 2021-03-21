@@ -7,9 +7,15 @@ import logging
 import zipfile
 import xml.etree.ElementTree as ET
 import os
-import boto3
+#import boto3
 import XML_Breaker
 from xml.sax import parse
+
+logging.basicConfig(filename='newfile.log',
+                    format='%(asctime)s %(message)s',
+                    filemode='a')
+_logger = logging.getLogger()
+_logger.setLevel(logging.DEBUG)
 
 class XML_Processor:
 
@@ -28,18 +34,13 @@ class XML_Processor:
         childnum=1,
         filetype='DLTINS',
         dirpath='./',
-        logfilename='newfile.log',
         ):
         self.xml_url = xml_url
         self.filetype = filetype
         self.childnum = childnum
         self.dirpath = dirpath
-        self.logfilename = logfilename
-        logging.basicConfig(filename=dirpath + logfilename,
-                            format='%(asctime)s %(message)s',
-                            filemode='a')
-        self.logger = logging.getLogger()
-        self.logger.setLevel(logging.DEBUG)
+        self.logger = _logger
+
 
     def getZipURL(self, _timeout=10, deltemp=True):
         """
@@ -142,73 +143,6 @@ class XML_Processor:
             self.logger.info("Finished splitting")
         return True
 
-    def XMLtoCSV(
-        self,
-        tgval,
-        tgval_children,
-        tgval_nonchildren,
-        rowcount=-1,
-        csvname='',
-        ):
-        """
-        Function converts the unzipped XML file to CSV and stores locally
-        tgval(type str) = Parent tag to parse
-        tgval_children(type list of string) = The children of tgval to parse
-        tgval_nonchildren(type list of string) = The tags other than children of tgval to parse
-        rowcount = The total number of rows to be generated in the output CSV, default is all 
-        csvname : The csv file name with which output is to be saved
-        """
-        files = os.listdir(self.dirpath)
-        xmlfiles = list(filter(lambda s : s.endswith(".xml"),files))
-        xmlfiles.remove(self.xmlfilename)
-        for filename in xmlfiles:
-            if csvname == '':
-                self.csvname = filename[:-3] + 'csv'
-            else : 
-                self.csvname = csvname
-            try :
-                open(self.dirpath + self.csvname)
-            except :
-                self.logger.info("CSV file does not exist, going ahead with creating it")
-            else :
-                self.logger.error("CSV file already exists, skipping the function")
-                return True
-            fp = open(self.csvname, 'w')
-            header = (',' + tgval + '.').join([''] + tgval_children) \
-                + ','.join([''] + tgval_nonchildren) + '\n'
-            fp.write(header[1:])
-            try:
-                isParent = False
-                opstr = ''
-                #rowcount += 1
-                for (event, elem) in ET.iterparse(self.xmlfilename,
-                        events=('start', 'end')):
-                    tagval = elem.tag[elem.tag.find('}') + 1:]
-                    if tagval == tgval and event == 'start':
-                        isParent = True
-                    if tagval == tgval and event == 'end':
-                        isParent = False
-                        rowcount -= 1
-                        row = opstr
-                        opstr = ''
-                    if isParent and event == 'start':
-                        if tagval in tgval_children:
-                            opstr += str(elem.text) + ','
-                    if not isParent and tagval in tgval_nonchildren \
-                        and event == 'start':
-                        row += str(elem.text)
-                        fp.write(row + '\n')
-                    if rowcount == 0:
-                        break
-            except Exception as e:
-                self.logger.error(e)
-                continue
-            else:
-                self.logger.info('Converted {} XML file to CSV successfully'.format(filename))
-            finally:
-                fp.close()
-        return True
-
     def cleanUp(self, files=['xml', 'zip']):
         """
         This function removes all the intermediate files created
@@ -222,8 +156,6 @@ class XML_Processor:
                 files = os.listdir(self.dirpath)
                 for file in filter(lambda s : s.endswith(".xml"),files):
                     os.remove(self.dirpath + file)
-            if 'log' in files:
-                os.remove(self.dirpath + self.logfilename)
         except Exception as e:
             self.logger.error(e)
             return False
@@ -246,3 +178,64 @@ class XML_Processor:
         else :
             self.logger.info("Upload successful")
             return True
+
+
+def XMLtoCSV(
+    tgval,
+    tgval_children,
+    tgval_nonchildren,
+    filename,
+    rowcount=-1,
+    csvname='',
+    ):
+    """
+    Function converts the unzipped XML file to CSV and stores locally
+    tgval(type str) = Parent tag to parse
+    tgval_children(type list of string) = The children of tgval to parse
+    tgval_nonchildren(type list of string) = The tags other than children of tgval to parse
+    rowcount = The total number of rows to be generated in the output CSV, default is all 
+    csvname : The csv file name with which output is to be saved
+    """
+    if csvname == '':
+        csvname = filename[:-3] + 'csv'
+    try :
+        open(csvname)
+    except :
+        _logger.info("CSV file does not exist, going ahead with creating it")
+    else :
+        _logger.error("CSV file already exists, skipping the function")
+        return True
+    fp = open(csvname, 'w')
+    header = (',' + tgval + '.').join([''] + tgval_children) \
+        + ','.join([''] + tgval_nonchildren) + '\n'
+    fp.write(header[1:])
+    try:
+        isParent = False
+        row = opstr = ''
+        rowcount += 1
+        for (event, elem) in ET.iterparse(filename,
+                events=('start', 'end')):
+            tagval = elem.tag[elem.tag.find('}') + 1:]
+            if tagval == tgval and event == 'start':
+                isParent = True
+            if tagval == tgval and event == 'end':
+                isParent = False
+                rowcount -= 1
+                row = opstr
+                opstr = ''
+            if isParent and event == 'start':
+                if tagval in tgval_children:
+                    opstr += str(elem.text) + ','
+            if not isParent and tagval in tgval_nonchildren \
+                and event == 'start':
+                row += str(elem.text)
+                fp.write(row + '\n')
+            if rowcount == 0:
+                break
+    except Exception as e:
+        _logger.error(e)
+    else:
+        _logger.info('Converted {} XML file to CSV successfully with {} rows'.format(filename, -rowcount))
+    finally:
+        fp.close()
+    return True
